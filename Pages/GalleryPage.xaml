@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:lab_6.Models"
+             x:Class="lab_6.Pages.GalleryPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#0D0F17">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="16,18,16,0" RowSpacing="12">
+
+        <Grid ColumnDefinitions="*,Auto">
+            <VerticalStackLayout Spacing="2">
+                <Label Text="PRIVATE GALLERY"
+                       TextColor="#E2B75B"
+                       FontSize="18"
+                       FontAttributes="Bold" />
+                <Label x:Name="CountLabel"
+                       Text="0 artworks collected"
+                       TextColor="#94A3B8"
+                       FontSize="13" />
+            </VerticalStackLayout>
+
+            <Button x:Name="SortButton"
+                    Grid.Column="1"
+                    Text="Sort: Recent"
+                    Clicked="OnSortClicked"
+                    BackgroundColor="#171A26"
+                    TextColor="#E2B75B"
+                    BorderColor="#2A2F45"
+                    BorderWidth="1"
+                    FontSize="12"
+                    CornerRadius="12"
+                    HeightRequest="38"
+                    Padding="12,0"
+                    VerticalOptions="Center" />
+        </Grid>
+
+        <Border Grid.Row="1"
+                BackgroundColor="#151824"
+                Stroke="#262B3D"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14"
+                Padding="4,0">
+            <SearchBar x:Name="GallerySearchBar"
+                       Placeholder="Search by title, artist, style or note..."
+                       PlaceholderColor="#64748B"
+                       TextColor="#F8FAFC"
+                       CancelButtonColor="#E2B75B"
+                       TextChanged="OnSearchTextChanged" />
+        </Border>
+
+        <CollectionView x:Name="GalleryCollectionView"
+                        Grid.Row="2"
+                        SelectionMode="Single"
+                        SelectionChanged="OnArtworkSelected">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     Spacing="8"
+                                     Padding="24">
+                    <Label Text="Your gallery is empty"
+                           TextColor="#F8FAFC"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Play a round in TimeCurator and save artworks you like to build your personal exhibition."
+                           TextColor="#94A3B8"
+                           FontSize="14"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:SavedArtwork">
+                    <Border Margin="0,0,0,10"
+                            BackgroundColor="#151824"
+                            Stroke="#262B3D"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 16"
+                            Padding="10">
+                        <Grid ColumnDefinitions="78,*" ColumnSpacing="12">
+                            <Border StrokeShape="RoundRectangle 10"
+                                    StrokeThickness="0"
+                                    BackgroundColor="#0D0F17"
+                                    HeightRequest="78"
+                                    WidthRequest="78">
+                                <Image Source="{Binding DisplayImage}"
+                                       Aspect="AspectFill" />
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="4">
+                                <Label Text="{Binding Title}"
+                                       TextColor="#F8FAFC"
+                                       FontSize="15"
+                                       FontAttributes="Bold"
+                                       MaxLines="1"
+                                       LineBreakMode="TailTruncation" />
+
+                                <Label Text="{Binding MetaLine}"
+                                       TextColor="#E2B75B"
+                                       FontSize="13"
+                                       MaxLines="1"
+                                       LineBreakMode="TailTruncation" />
+
+                                <Label Text="{Binding Style}"
+                                       TextColor="#94A3B8"
+                                       FontSize="12"
+                                       MaxLines="1"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

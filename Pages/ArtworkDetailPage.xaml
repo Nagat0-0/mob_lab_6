@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab_6.Pages.ArtworkDetailPage"
+             Title="Artwork Details"
+             BackgroundColor="#0D0F17">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16,14,16,28" Spacing="14">
+
+            <Border BackgroundColor="#151824"
+                    Stroke="#2A2F45"
+                    StrokeThickness="1.5"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="10">
+                <Grid HeightRequest="300">
+                    <Image x:Name="DetailImage"
+                           Aspect="AspectFit"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnDetailImageTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Border BackgroundColor="#B30D0F17"
+                            Stroke="#2A2F45"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="8,4"
+                            HorizontalOptions="End"
+                            VerticalOptions="End"
+                            Margin="6"
+                            InputTransparent="True">
+                        <Label Text="⤢" TextColor="#E2B75B" FontSize="14" FontAttributes="Bold" />
+                    </Border>
+                </Grid>
+            </Border>
+
+            <VerticalStackLayout Spacing="4">
+                <Label x:Name="DetailTitleLabel"
+                       TextColor="#F8FAFC"
+                       FontSize="22"
+                       FontAttributes="Bold" />
+
+                <Label x:Name="DetailArtistLabel"
+                       TextColor="#E2B75B"
+                       FontSize="15"
+                       FontAttributes="Bold" />
+            </VerticalStackLayout>
+
+            <Border BackgroundColor="#151824"
+                    Stroke="#262B3D"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="14">
+                <VerticalStackLayout Spacing="8">
+                    <Label x:Name="DetailDateLabel" TextColor="#CBD5E1" FontSize="14" />
+                    <Label x:Name="DetailStyleLabel" TextColor="#CBD5E1" FontSize="14" />
+                    <Label x:Name="DetailOriginLabel" TextColor="#CBD5E1" FontSize="14" />
+                    <Label x:Name="DetailMediumLabel" TextColor="#94A3B8" FontSize="13" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="#151824"
+                    Stroke="#262B3D"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="CURATOR NOTE"
+                           TextColor="#E2B75B"
+                           FontSize="12"
+                           FontAttributes="Bold" />
+
+                    <Editor x:Name="NoteEditor"
+                            Placeholder="Write your personal impression or historical note..."
+                            PlaceholderColor="#64748B"
+                            TextColor="#F8FAFC"
+                            BackgroundColor="#0D0F17"
+                            HeightRequest="100"
+                            FontSize="14" />
+
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <Label x:Name="NoteStatusLabel"
+                               Text=""
+                               TextColor="#34D399"
+                               FontSize="13"
+                               VerticalOptions="Center" />
+
+                        <Button Grid.Column="1"
+                                Text="Save Note"
+                                Clicked="OnSaveNoteClicked"
+                                BackgroundColor="#E2B75B"
+                                TextColor="#0D0F17"
+                                FontAttributes="Bold"
+                                CornerRadius="12"
+                                HeightRequest="42"
+                                Padding="18,0" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button x:Name="DeleteButton"
+                    Text="Remove from Gallery"
+                    Clicked="OnDeleteClicked"
+                    BackgroundColor="#2B1D24"
+                    TextColor="#F87171"
+                    FontAttributes="Bold"
+                    CornerRadius="14"
+                    HeightRequest="48" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
